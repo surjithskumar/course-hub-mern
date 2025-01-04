@@ -8,29 +8,33 @@ const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
 
 app.use(
-    cors({
-      origin: process.env.CLIENT_URL,
-      methods: ["GET", "POST", "DELETE", "PUT"],
-      allowedHeaders: ["Content-Type", "Authorization"],
-    })
-  );
+  cors({
+    origin: process.env.CLIENT_URL,
+    methods: ["GET", "POST", "DELETE", "PUT"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
-  app.use(express.json());
+app.use(express.json());
 
-  //database connection
+//database connection
 mongoose
-.connect(MONGO_URI)
-.then(() => console.log("mongodb is connected successfully"))
-.catch((e) => console.log(e));
+  .connect(MONGO_URI)
+  .then(() => console.log("mongodb is connected"))
+  .catch((e) => console.log(e));
 
+//routes configuration
+  
+
+//global error handler
 app.use((err, req, res, next) => {
-    console.log(err.stack);
-    res.status(500).json({
-      success: false,
-      message: "Something went wrong",
-    });
+  console.log(err.stack);
+  res.status(500).json({
+    success: false,
+    message: "Something went wrong",
   });
+});
 
-app.listen(PORT, () => {
-    console.log(`Server is now running on port ${PORT}`);
-  });
+app.listen(5000, () => {
+  console.log(`Server is now running on port ${PORT}`);
+});
