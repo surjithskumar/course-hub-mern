@@ -14,15 +14,17 @@ function StudentViewCommonHeader() {
   }
 
   return (
-    <header className="flex items-center justify-between p-4 border-b relative">
+    <header className="flex flex-wrap items-center justify-between p-4 border-b bg-white">
+      {/* Left Section: Brand and Navigation */}
       <div className="flex items-center space-x-4">
-        <Link to="/home" className="flex items-center hover:text-black">
-          <GraduationCap className="h-8 w-8 mr-4 " />
-          <span className="font-extrabold md:text-xl text-[14px]">
-            LMS LEARN
-          </span>
+        <Link
+          to="/home"
+          className="flex items-center hover:text-black text-sm md:text-base"
+        >
+          <GraduationCap className="h-6 w-6 md:h-8 md:w-8 mr-2" />
+          <span className="font-extrabold md:text-xl text-base">E-LEARN</span>
         </Link>
-        <div className="flex items-center space-x-1">
+        <div className="hidden md:flex items-center space-x-1">
           <Button
             variant="ghost"
             onClick={() => {
@@ -30,25 +32,43 @@ function StudentViewCommonHeader() {
                 ? null
                 : navigate("/courses");
             }}
-            className="text-[14px] md:text-[16px] font-medium"
+            className="text-sm md:text-base font-medium"
           >
             Explore Courses
           </Button>
         </div>
       </div>
-      <div className="flex items-center space-x-4">
-        <div className="flex gap-4 items-center">
-          <div
-            onClick={() => navigate("/student-courses")}
-            className="flex cursor-pointer items-center gap-3"
-          >
-            <span className="font-extrabold md:text-xl text-[14px]">
-              My Courses
-            </span>
-            <TvMinimalPlay className="w-8 h-8 cursor-pointer" />
-          </div>
-          <Button onClick={handleLogout}>Sign Out</Button>
+
+      {/* Right Section: User Actions */}
+      <div className="flex items-center space-x-4 mt-2 md:mt-0">
+        <div
+          onClick={() => navigate("/student-courses")}
+          className="flex items-center gap-2 cursor-pointer"
+        >
+          <span className="font-bold text-sm md:text-base">My Courses</span>
+          <TvMinimalPlay className="h-6 w-6 md:h-8 md:w-8" />
         </div>
+        <Button
+          onClick={handleLogout}
+          className="text-sm md:text-base px-3 py-2 md:px-4 md:py-2"
+        >
+          Sign Out
+        </Button>
+      </div>
+
+      {/* Mobile Navigation: Explore Courses */}
+      <div className="flex md:hidden w-full mt-2">
+        <Button
+          variant="ghost"
+          onClick={() => {
+            location.pathname.includes("/courses")
+              ? null
+              : navigate("/courses");
+          }}
+          className="text-sm font-medium w-full"
+        >
+          Explore Courses
+        </Button>
       </div>
     </header>
   );
