@@ -15,9 +15,7 @@ function FormControls({ formControls = [], formData, setFormData }) {
     const currentControlItemValue = formData[getControlItem.name] || "";
 
     switch (getControlItem.componentType) {
-
       case "input":
-
         element = (
           <Input
             id={getControlItem.name}
@@ -33,11 +31,8 @@ function FormControls({ formControls = [], formData, setFormData }) {
             }
           />
         );
-
         break;
-
       case "select":
-
         element = (
           <Select
             onValueChange={(value) =>
@@ -54,19 +49,16 @@ function FormControls({ formControls = [], formData, setFormData }) {
             <SelectContent>
               {getControlItem.options && getControlItem.options.length > 0
                 ? getControlItem.options.map((optionItem) => (
-                  <SelectItem key={optionItem.id} value={optionItem.id}>
-                    {optionItem.label}
-                  </SelectItem>
-                ))
+                    <SelectItem key={optionItem.id} value={optionItem.id}>
+                      {optionItem.label}
+                    </SelectItem>
+                  ))
                 : null}
             </SelectContent>
           </Select>
         );
-
         break;
-
       case "textarea":
-
         element = (
           <Textarea
             id={getControlItem.name}
@@ -81,11 +73,9 @@ function FormControls({ formControls = [], formData, setFormData }) {
             }
           />
         );
-
         break;
 
       default:
-
         element = (
           <Input
             id={getControlItem.name}
@@ -101,7 +91,6 @@ function FormControls({ formControls = [], formData, setFormData }) {
             }
           />
         );
-
         break;
     }
 
